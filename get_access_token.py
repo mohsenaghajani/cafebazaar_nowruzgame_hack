@@ -9,12 +9,16 @@ def get_client_id():
         }
         url = 'https://api.nowruz1403.laeebcup.com/auth/login'
         response = requests.post(url, json=data)
+        response_data = response.json()
         if response.status_code == 200 :
             date_response = response.json()
             client_id = date_response['data']['clientId']
             return client_id
         else:
-            print('phone number is invalid try again or you must sign in first')
+            if response_data['message'] == "user does not exist!":
+                return sign_in()
+            else:
+                print('phone number is invalid try again ')
 
 
 def login():
@@ -33,3 +37,16 @@ def login():
             print('code is invalid try again')
 
 
+def sign_in():
+    while True:
+        get_username = input('enter username :')
+        phone_number = input('enter phone number')
+        data = {"phone": f"{phone_number}", "username": f"{get_username}"}
+        url = 'https://api.nowruz1403.laeebcup.com/auth/register'
+        response = requests.post(url, json=data)
+        if response.status_code == 200:
+            date_response = response.json()
+            client_id = date_response['data']['clientId']
+            return client_id
+        else:
+            print('username is invalid try again ')

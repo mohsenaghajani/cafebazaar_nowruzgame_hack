@@ -29,6 +29,7 @@ def main():
                     return
             else:
                 print('input invalid try again')
+                break
 
 
 if __name__ == '__main__':
