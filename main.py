@@ -20,8 +20,8 @@ def main():
                                    headers=header, json=data)
         result = send_score.json()
         print(result)
-        user_choice = input('do you want another ?(y/n)')
         while True:
+            user_choice = input('do you want another ?(y/n)')
             if user_choice in ['y', 'n']:
                 if user_choice == 'y':
                     break
@@ -29,7 +29,6 @@ def main():
                     return
             else:
                 print('input invalid try again')
-                break
 
 
 if __name__ == '__main__':
